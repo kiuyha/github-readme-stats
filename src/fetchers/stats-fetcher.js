@@ -167,7 +167,7 @@ const statsFetcher = async ({
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
-const totalCommitsFetcher = async (username) => {
+export const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
@@ -324,7 +324,6 @@ const fetchStats = async (
     stars: stats.totalStars,
     followers: user.followers.totalCount,
   });
-
   return stats;
 };
 
