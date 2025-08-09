@@ -18,6 +18,7 @@ export default async (req, res) => {
         "Cache-Control",
         `max-age=${CACHE_SECONDS / 2}, s-maxage=${CACHE_SECONDS}`,
       );
+      res.setHeader("Access-Control-Allow-Origin", "*");
       res.send(JSON.stringify(data, null, 2));
     }
   } catch (err) {
