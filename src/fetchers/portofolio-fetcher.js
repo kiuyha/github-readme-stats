@@ -85,10 +85,24 @@ const graphqlFetcher = (variables, token) => {
   );
 };
 
+/**
+ * @typedef {import("./types").PortfolioData} PortfolioData Portfolio data.
+ */
+
+/**
+ * Fetch stats for a given username.
+ *
+ * @param {string} username GitHub username.
+ * @param {boolean} include_all_commits Include all commits.
+ * @param {string[]} exclude_repo Repositories to exclude.
+ *
+ * @returns {Promise<PortfolioData>} Stats data.
+ */
 const fetchGithubProfileData = async (
   username,
   langs_count,
   include_all_commits,
+  exclude_repo = [],
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -125,6 +139,10 @@ const fetchGithubProfileData = async (
     hasNextPage = user.repositories.pageInfo.hasNextPage;
     endCursor = user.repositories.pageInfo.endCursor;
   }
+
+  // Filter out excluded repositories
+  let repoToHide = new Set(exclude_repo);
+  allRepos = allRepos.filter((repo) => !repoToHide.has(repo.name));
 
   // Process Top Languages
   const langMap = allRepos
@@ -168,7 +186,7 @@ const fetchGithubProfileData = async (
     prs: stats.totalPRs,
     reviews: stats.totalReviews,
     issues: stats.totalIssues,
-    repos: userProfileData.repositories.totalCount,
+    repos: allRepos.length,
     stars: stats.totalStars,
     followers: userProfileData.followers.totalCount,
   });
@@ -181,7 +199,7 @@ const fetchGithubProfileData = async (
       followers: userProfileData.followers.totalCount,
       following: userProfileData.following.totalCount,
       staredRepos: userProfileData.starredRepositories.totalCount,
-      totalRepos: userProfileData.repositories.totalCount,
+      totalRepos: allRepos.length,
     },
     stats: {
       ...stats,

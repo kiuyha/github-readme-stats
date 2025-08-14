@@ -116,3 +116,38 @@ export type WakaTimeLang = {
   text: string;
   percent: number;
 };
+
+export type PortofolioData = {
+  profile: {
+      username: string;
+      name: string;
+      avatarUrl: string;
+      followers: number;
+      following: number;
+      staredRepos: number;
+      totalRepos: number;
+    };
+    stats: {
+      totalStars: number;
+      totalCommits: number;
+      totalReviews: number;
+      totalPRs: number;
+      totalIssues: number;
+      contributedTo: number;
+      rank: { level: string; percentile: number };
+    };
+    topLanguages: Lang[];
+    repositories: {
+      name: string;
+      url: string;
+      description: string|null;
+      language: string;
+      stars: number;
+      forks: number;
+      sizeInKB: number;
+      createdAt: string;
+      updatedAt: string;
+      isPrivate: boolean;
+      languages: Lang[];
+    }[];
+};
