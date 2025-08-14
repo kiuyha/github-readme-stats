@@ -141,7 +141,6 @@ export type PortfolioData = {
       name: string;
       url: string;
       description: string|null;
-      language: string;
       stars: number;
       forks: number;
       sizeInKB: number;
