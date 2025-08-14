@@ -117,7 +117,7 @@ export type WakaTimeLang = {
   percent: number;
 };
 
-export type PortofolioData = {
+export type PortfolioData = {
   profile: {
       username: string;
       name: string;

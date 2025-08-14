@@ -86,7 +86,7 @@ const graphqlFetcher = (variables, token) => {
 };
 
 /**
- * @typedef {import("./types").PortfolioData} PortfolioData Portfolio data.
+ * @typedef {import("./types.js").PortfolioData} PortfolioData Portfolio data.
  */
 
 /**

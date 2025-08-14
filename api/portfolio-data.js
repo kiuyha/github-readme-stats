@@ -1,5 +1,5 @@
 import { logger, parseArray, parseBoolean } from "../src/common/utils.js";
-import { fetchGithubProfileData } from "../src/fetchers/portofolio-fetcher.js";
+import { fetchGithubProfileData } from "../src/fetchers/portfolio-fetcher.js";
 
 export default async (req, res) => {
   const {
